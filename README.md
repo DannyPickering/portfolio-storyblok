@@ -18,8 +18,8 @@ pnpm install
 ```
 
 ## Setting up local development
-If you're on macOS follow `https://www.storyblok.com/faq/setup-dev-server-https-proxy`
-If you're on windows follow `https://www.storyblok.com/faq/setup-dev-server-https-windows`
+If you're on macOS follow [this guide](https://www.storyblok.com/faq/setup-dev-server-https-proxy)
+If you're on windows follow [this guide](https://www.storyblok.com/faq/setup-dev-server-https-windows)
 
 With Storyblok v2, your app must be served in HTTPS the above links will help with setting this up.
 
@@ -40,6 +40,7 @@ Start the development server on `http://localhost:3000`
 npm run dev
 ```
 
+Start the development server on https
 ```bash
 npm run dev:https
 ```
