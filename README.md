@@ -17,12 +17,31 @@ npm install
 pnpm install
 ```
 
+## Setting up local development
+If you're on macOS follow `https://www.storyblok.com/faq/setup-dev-server-https-proxy`
+If you're on windows follow `https://www.storyblok.com/faq/setup-dev-server-https-windows`
+
+With Storyblok v2, your app must be served in HTTPS the above links will help with setting this up.
+
+You should have a `localhost-key.pem` and `localhost.pem` 
+
+Login to your storyblok CMS to get your api key and set up your .env file with the key `STORYBLOK_API_KEY`
+While inside the CMS ensure that `settings > Visual editor` has `Location (default environment) *` set to `https://localhost:3000/`
+
+Additionally I needed `NODE_TLS_REJECT_UNAUTHORIZED=0` for windows and it doesn't seem to brake anything on macOS
+
+Lastly run `npm run dev:https` and check `https://localhost:3000` and your Storyblok CMS visual editor to ensure everything works.
+
 ## Development Server
 
 Start the development server on `http://localhost:3000`
 
 ```bash
 npm run dev
+```
+
+```bash
+npm run dev:https
 ```
 
 ## Production
