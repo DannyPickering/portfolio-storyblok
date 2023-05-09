@@ -1,6 +1,5 @@
 export default defineNuxtConfig({
   ssr: false,
-  target: 'server',
   modules: [
       ['@storyblok/nuxt', {
           accessToken: process.env.STORYBLOK_API_KEY,
