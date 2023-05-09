@@ -10,11 +10,14 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
+    "@nuxtjs/google-fonts": "^3.0.0",
     "@storyblok/nuxt": "^5.4.0",
     "cross-env": "^7.0.3",
-    "nuxt": "^3.3.3"
+    "nuxt": "^3.3.3",
+    "sass": "^1.62.0"
   },
   "dependencies": {
-    "dotenv": "^16.0.3"
+    "dotenv": "^16.0.3",
+    "gsap": "https://majestic-souffle-62b882.netlify.app/gsap-bonus.tgz"
   }
 }

@@ -39,15 +39,16 @@
 </script>
 
 <template>
-    <div>
+    <div class="container-grid">
         <h2>{{ tag.taggings_count }} {{ pluralizationComputed }} tagged {{ tag.name }} </h2>
 
-        <ProjectCard
-            v-for="project in projects"
-            :project="project"
-            :slug="project.full_slug"
-            :key="project.uuid">
-            {{ project }}
-        </ProjectCard>
+        <ul class="m-portfolio__projects">
+            <ProjectCard 
+                v-for="project in projects"
+                :project="project"
+                :slug="project.full_slug"
+                :key="project.uuid"
+            />
+        </ul>
     </div>
 </template>

@@ -18,12 +18,11 @@ pnpm install
 ```
 
 ## Setting up local development
-If you're on macOS follow [this guide](https://www.storyblok.com/faq/setup-dev-server-https-proxy)
-or if you're on windows follow [this guide](https://www.storyblok.com/faq/setup-dev-server-https-windows)
+If you're on macOS follow [this guide](https://www.storyblok.com/faq/setup-dev-server-https-proxy) or if you're on windows follow [this guide](https://www.storyblok.com/faq/setup-dev-server-https-windows).
 
 With Storyblok v2, your app must be served in HTTPS the above links will help with setting this up.<br>
 
-You should have a `localhost-key.pem` and `localhost.pem`<br>
+You should now have a `localhost-key.pem` and `localhost.pem`<br>
 
 Login to your storyblok CMS to get your api key and set up your .env file with the key `STORYBLOK_API_KEY`<br>
 While inside the CMS ensure that `settings > Visual editor` has `Location (default environment) *` set to `https://localhost:3000/`<br>

@@ -19,8 +19,4 @@
 </template>
 
 <style>
-    h1 {
-        color: black;
-        font-size: 40px;
-    }
 </style>
