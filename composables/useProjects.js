@@ -21,18 +21,18 @@ export function useProjects() {
         }))
     }
 
-    async function fetchProjectBySlug(slug) {
+    async function fetchProjectsByTag(tag) {
         try {
             const { data } = await storyblokApi.get('cdn/stories', {
                 version: process.env.NODE_ENV === 'production' ? 'published' : 'draft',
-                starts_with: 'portfolio/',
-                by_slugs: '*/' + slug,
-                is_startpage: false
+                starts_with: 'portfolio',
+                is_startpage: false,
+                with_tag: tag,
             })
 
-            const story = data.stories[0]
-
-            return story
+            state.projects = data.stories.map(project => ({
+                ...project
+            }))
         } catch (error) {
             console.log(error)
         }
@@ -41,7 +41,7 @@ export function useProjects() {
     return {
         ...toRefs(state),
         fetchProjects,
-        fetchProjectBySlug
+        fetchProjectsByTag
     }
 
 }

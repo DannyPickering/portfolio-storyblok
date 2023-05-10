@@ -7,14 +7,15 @@
     <div class="m-portfolio container-grid">
         <h1>Projects</h1>
 
-        <ul class="m-portfolio__projects">
+        <ProjectGrid>
             <ProjectCard 
                 v-for="project in projects"
                 :project="project"
                 :slug="project.full_slug"
                 :key="project.uuid"
             />
-        </ul>
+        </ProjectGrid>
+            
     </div>
 </template>
 
