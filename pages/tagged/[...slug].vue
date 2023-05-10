@@ -7,7 +7,7 @@
     await fetchProjectsByTag(slug)
 
     const { data: tagData } = await storyblokApi.get(`cdn/tags`, {
-        version: 'draft',
+        version: process.env.NODE_ENV === 'production' ? 'published' : 'draft',
         starts_with: 'portfolio'
     })
 
