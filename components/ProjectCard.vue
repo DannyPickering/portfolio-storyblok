@@ -11,7 +11,7 @@
         class="m-project-card">
         <div class="m-project-card__thumbnail">
             <img 
-                :src="project.content.thumbnail.filename" 
+                :src="project.content.thumbnail.filename + '/m/500x0'" 
                 alt=""
             />
         </div>
@@ -34,19 +34,33 @@
         max-width: 500px;
         &__thumbnail {
             position: relative;
+            transition: all 0.3s ease-out;
+            // &:hover {
+            //     img {
+            //         filter: grayscale(0);
+            //         transition: all 0.3s ease-out;
+            //     }
+            //     &:after {
+            //         background-color: $cOrange;
+            //         mix-blend-mode: multiply;
+            //         transition: all .5s ease-out;
+            //     }
+            // }
             img {
                 width: 100%;
                 margin-bottom: 10px;
+                aspect-ratio: 16 / 9;
+                filter: grayscale(1);
+
             }
-            &::after {
+            &:after {
                 content: '';
                 position: absolute;
                 top: 0;
                 left: 0;
                 right: 0;
                 bottom: 0;
-                background-color: $cOrange;
-                mix-blend-mode: multiply;
+                pointer-events: none;
             }
         }
 
