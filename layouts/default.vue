@@ -1,3 +1,9 @@
+<script setup>
+useHead({
+    title: 'Daniel Pickering'
+})
+</script>
+
 <template>
     <div class="layout-wrapper">
         <Header />
