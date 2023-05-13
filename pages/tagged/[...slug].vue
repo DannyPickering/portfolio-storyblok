@@ -11,7 +11,7 @@
         starts_with: 'portfolio'
     })
 
-    tag.value = tagData.tags.slice().find(t => t.name.includes(slug))
+    tag.value = tagData.tags.slice().find(t => t.name == slug)
 
     const pluralizationComputed = computed(() => {
         return tag.value.taggings_count > 1 ? 'Projects' : 'Project'

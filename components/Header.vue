@@ -9,9 +9,9 @@
                     <li>
                         <CycleText word="Portfolio" linkTo="/portfolio"/>
                     </li>
-                    <li>
+                    <!-- <li>
                         <CycleText word="About" linkTo="/about"/>
-                    </li>
+                    </li> -->
                 </ul>
             </nav>
         </div>

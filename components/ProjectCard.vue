@@ -32,26 +32,21 @@
 <style lang="scss">
     .m-project-card {
         max-width: 500px;
+        &:hover {
+            .m-project-card__thumbnail img {
+                filter: grayscale(0);
+                transition: all 0.5s ease-out;
+            }
+        }
         &__thumbnail {
             position: relative;
             transition: all 0.3s ease-out;
-            // &:hover {
-            //     img {
-            //         filter: grayscale(0);
-            //         transition: all 0.3s ease-out;
-            //     }
-            //     &:after {
-            //         background-color: $cOrange;
-            //         mix-blend-mode: multiply;
-            //         transition: all .5s ease-out;
-            //     }
-            // }
             img {
                 width: 100%;
                 margin-bottom: 10px;
                 aspect-ratio: 16 / 9;
                 filter: grayscale(1);
-
+                transition: all 0.5s ease-out;
             }
             &:after {
                 content: '';
