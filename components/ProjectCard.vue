@@ -16,11 +16,13 @@
             />
         </div>
         <div class="m-project-card__footer">
-            <h2>{{ project.content.title }}</h2>
-            <div class="m-project-card__tags">
-                <div
-                    v-for="tag in project.tag_list">
-                    <CycleText :word="tag" :linkTo="`${'/tagged/' + tag}`" :bgScale="true"  bgColor="#F95C32" bgHover="#fff" txtHover="#000" txtColor="#fff"/>
+            <div>
+                <h2>{{ project.content.title }}</h2>
+                <div class="m-project-card__tags">
+                    <div
+                        v-for="tag in project.tag_list">
+                        <CycleText :word="tag" :linkTo="`${'/tagged/' + tag}`" :bgScale="true"  bgColor="#F95C32" bgHover="#fff" txtHover="#000" txtColor="#fff"/>
+                    </div>
                 </div>
             </div>
             

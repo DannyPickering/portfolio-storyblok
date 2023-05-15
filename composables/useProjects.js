@@ -7,11 +7,12 @@ const state = reactive({
 export function useProjects() {
     const storyblokApi = useStoryblokApi()
 
-    async function fetchProjects() {
+    async function fetchProjects(per_page) {
         let params = {
             version: process.env.NODE_ENV === 'production' ? 'published' : 'draft',
             starts_with: 'portfolio/',
-            is_startpage: false
+            is_startpage: false,
+            per_page: per_page
         }
 
         const { data } = await storyblokApi.get('cdn/stories/', params)
@@ -27,7 +28,7 @@ export function useProjects() {
                 version: process.env.NODE_ENV === 'production' ? 'published' : 'draft',
                 starts_with: 'portfolio',
                 is_startpage: false,
-                with_tag: tag,
+                with_tag: tag
             })
 
             state.projects = data.stories.map(project => ({
