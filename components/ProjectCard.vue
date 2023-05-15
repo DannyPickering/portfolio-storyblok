@@ -11,11 +11,11 @@
         class="m-project-card">
         <div class="m-project-card__thumbnail">
             <img 
-                :src="project.content.thumbnail.filename + '/m/500x0'" 
+                :src="project.content.thumbnail.filename + '/m/'" 
                 alt=""
             />
         </div>
-        <div>
+        <div class="m-project-card__footer">
             <h2>{{ project.content.title }}</h2>
             <div class="m-project-card__tags">
                 <div
@@ -32,6 +32,8 @@
 <style lang="scss">
     .m-project-card {
         max-width: 500px;
+        display: grid;
+        grid-template-rows: auto 1fr;
         &:hover {
             .m-project-card__thumbnail img {
                 filter: grayscale(0);
@@ -58,7 +60,11 @@
                 pointer-events: none;
             }
         }
-
+        &__footer {
+            display: flex;
+            flex-flow: column;
+            justify-content: space-between;
+        }
         &__tags {
             display: flex;
             flex-flow: row wrap;
