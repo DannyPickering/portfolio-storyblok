@@ -27,13 +27,16 @@ export default defineNuxtConfig({
       '@/assets/styles/main.scss',
   ],
   vite: {
-      css: {
-        preprocessorOptions: {
-          scss: {
-            additionalData: '@use "@/assets/styles/_vars.scss" as *;'
-          }
+    optimizeDeps: {
+      exclude: ['gsap']
+    },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: '@use "@/assets/styles/_vars.scss" as *;'
         }
       }
+    }
   },
   build: {
     transpile: ['gsap'],

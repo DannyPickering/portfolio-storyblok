@@ -1,12 +1,25 @@
 <script setup>
-useHead({
-    title: 'Daniel Pickering'
-})
+    import Lenis from '@studio-freight/lenis'
+
+    onMounted(() => {
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+        })
+
+        function raf(time) {
+            lenis.raf(time)
+            requestAnimationFrame(raf)
+        }
+
+        requestAnimationFrame(raf)
+    })
 </script>
 
 <template>
-    <div class="layout-wrapper">
+    <div>
         <Header />
+
         <main>
             <slot />
         </main>
@@ -14,11 +27,29 @@ useHead({
 </template>
 
 <style lang="scss">
+    html.lenis {
+        height: auto;
+    }
+
+    .lenis.lenis-smooth {
+        scroll-behavior: auto;
+    }
+
+    .lenis.lenis-smooth [data-lenis-prevent] {
+        overscroll-behavior: contain;
+    }
+
+    .lenis.lenis-stopped {
+        overflow: hidden;
+    }
+
+    .lenis.lenis-scrolling iframe {
+        pointer-events: none;
+    } 
     .layout-wrapper {
         background: #030B0D;
         display: grid;
         grid-template-rows: auto 1fr;
-        min-height: 100vh;
     }
     main {
         > div {

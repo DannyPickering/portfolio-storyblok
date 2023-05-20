@@ -64,7 +64,7 @@
     .m-hh {
         color: $cWhite;
         padding-top: 20vh;
-        background-image: url('../assets/images/trees-bg.png');
+        // background-image: url('../assets/images/trees-bg.png');
         background-size: cover;
         width: 100vw;
         min-height: 100vh;

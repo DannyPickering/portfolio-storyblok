@@ -1,12 +1,54 @@
 <script setup>
-    const { projects, fetchProjects } = useProjects()
+    import gsap from 'gsap'
+    import { ScrollTrigger } from 'gsap/ScrollTrigger';
+    gsap.registerPlugin(ScrollTrigger)
+
+    const filter = ref('')
+
+    const { projects, fetchProjects } = useProjects(filter)
     await fetchProjects(100)
+
+    watch(filter, async () => {
+        await fetchProjects(100)
+        ScrollTrigger.refresh()
+    })
+
+    function updateFilter(payload) {
+        filter.value = payload
+    }
+
+    // onMounted(() => {
+    //     nextTick(() => {
+    //         const cards = gsap.utils.toArray('.m-project-card')
+    //         cards.forEach((card) => {
+    //             console.log(card);
+    //             gsap.set(card, {opacity: 0, y: '20%'})
+    //             gsap.fromTo(
+    //                 card,
+    //                 { opacity: 0, y: '20%'},
+    //                 {
+    //                     opacity: 1,
+    //                     y: 0,
+    //                     x: 0,
+    //                     duration: 1.2,
+    //                     scrollTrigger: {
+    //                         trigger: card,
+    //                         start: 'top 110%',
+    //                         end: 'bottom center',
+    //                         toggleActions: 'play none none reverse'
+    //                     }
+    //                 }
+    //             )
+    //         })
+    //     })
+    // })
 </script>
 
 <template>
     <div class="m-portfolio container-grid">
         <h1>Projects</h1>
 
+        <ProjectFilter :selectedFilter="filter" @setFilter="updateFilter"/>
         <ProjectGrid>
             <ProjectCard 
                 v-for="project in projects"
@@ -15,7 +57,6 @@
                 :key="project.uuid"
             />
         </ProjectGrid>
-            
     </div>
 </template>
 

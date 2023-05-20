@@ -7,16 +7,21 @@
     "dev:https": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 nuxt dev --https --ssl-cert localhost.pem --ssl-key localhost-key.pem",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "generate-sb-types": "storyblok-generate-ts source=./components.#1011603.json target=./component-types-sb"
   },
   "devDependencies": {
     "@nuxtjs/google-fonts": "^3.0.0",
     "@storyblok/nuxt": "^5.4.0",
+    "@types/node": "^20.2.1",
     "cross-env": "^7.0.3",
     "nuxt": "^3.3.3",
-    "sass": "^1.62.0"
+    "sass": "^1.62.0",
+    "storyblok-generate-ts": "^1.14.0",
+    "typescript": "^5.0.4"
   },
   "dependencies": {
+    "@studio-freight/lenis": "^1.0.12",
     "dotenv": "^16.0.3",
     "gsap": "https://majestic-souffle-62b882.netlify.app/gsap-bonus.tgz"
   }

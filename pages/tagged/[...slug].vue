@@ -1,20 +1,33 @@
-<script setup>
-    const storyblokApi = useStoryblokApi()
-    const { slug } = useRoute().params
-    const { projects, fetchProjectsByTag } = useProjects()
-    const tag = ref(null)
-    
-    await fetchProjectsByTag(slug)
+<script setup lang="ts">
+    import gsap from 'gsap'
+    import { ScrollTrigger } from 'gsap/ScrollTrigger'
+    gsap.registerPlugin(ScrollTrigger)
 
-    const { data: tagData } = await storyblokApi.get(`cdn/tags`, {
-        version: process.env.NODE_ENV === 'production' ? 'published' : 'draft',
-        starts_with: 'portfolio'
+    interface Tag {
+        name: string,
+        taggings_count: number
+    }
+    
+    const filter = ref()
+    const { slug } = useRoute().params
+    const { projects, fetchProjects, fetchProjectsByTag } = useProjects(filter)
+    const { tags, fetchTagData } = useTagData()
+
+    const tag = ref<Tag | null>(null)
+    await fetchTagData()
+
+    await fetchProjectsByTag(slug[0])
+    watch(filter, async () => {
+        await fetchProjects(100)
+        ScrollTrigger.refresh()
     })
 
-    tag.value = tagData.tags.slice().find(t => t.name == slug)
+
+    const foundTag = tags.value.find((t: Tag) => t.name === slug[0])
+    tag.value = foundTag ?? null
 
     const pluralizationComputed = computed(() => {
-        return tag.value.taggings_count > 1 ? 'Projects' : 'Project'
+        return tag.value?.taggings_count ?? 0 > 1 ? 'Projects' : 'Project'
     })
 </script>
 
@@ -22,7 +35,7 @@
     <div class="container">
         <h1>Projects</h1>
         
-        <h2>{{ tag.taggings_count }} {{ pluralizationComputed }} tagged {{ tag.name }} </h2>
+        <h2 v-if="tag">{{ tag.taggings_count }} {{ pluralizationComputed }} tagged {{ tag.name }} </h2>
         <ProjectGrid>
             <ProjectCard 
                 v-for="project in projects"

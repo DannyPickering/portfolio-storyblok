@@ -1,12 +1,43 @@
-<script setup>
+<script setup lang="ts">
+    import gsap from 'gsap'
+    import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
     defineProps({
         project: Object,
         slug: String
+    })
+
+    const card = ref<HTMLLIElement | null>(null)
+
+    onMounted(() => {
+        // console.log('mounted');
+        gsap.registerPlugin(ScrollTrigger)
+
+        // console.log('anim');
+        gsap.set(card.value, {opacity: 0, y: '20%'})
+        gsap.fromTo(
+            card.value,
+            { opacity: 0, y: '20%'},
+            {
+                opacity: 1,
+                y: 0,
+                x: 0,
+                duration: 1.2,
+                scrollTrigger: {
+                    trigger: card.value,
+                    start: 'top 110%',
+                    end: 'bottom center',
+                    toggleActions: 'play none none reverse'
+                }
+            }
+        )
     })
 </script>
 
 <template>
     <li
+        v-if="project"
+        ref="card"
         v-editable="project"
         class="m-project-card">
         <div class="m-project-card__thumbnail">

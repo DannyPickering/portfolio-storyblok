@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 
     import { gsap } from 'gsap'
 
@@ -38,16 +38,16 @@
         }
     })
 
-    const originalWord = props.word
+    const originalWord = ref(props.word)
     const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'   
 
-    let interval = null
+    let interval: ReturnType<typeof setInterval>
 
     const wordRef = ref()
     const wordHover = ref()
     
-    let tlHoverIn = new gsap.timeline({ paused: true })
-    let tlHoverOut = new gsap.timeline({ paused: true })
+    let tlHoverIn =  gsap.timeline({ paused: true })
+    let tlHoverOut = gsap.timeline({ paused: true })
 
     onMounted(() => {
 
@@ -84,34 +84,41 @@
             duration: 0.4
         }, '-= 0.3')
 
+        watch(() => props.word, (newValue) => {
+            originalWord.value = newValue;
+            animateLetters();
+        })
+
     })
     
     const keepBgScaled = computed(() => {
         return props.bgScale ? 1 : 0;
     })
     
-    function animateLetters() {
+    const animateLetters = () => {
         gsap.set(wordHover.value, { transformOrigin: '0% 0%' })
         tlHoverIn.play(0)
         let iteration = 0
         clearInterval(interval)
 
         interval = setInterval(() => {
-            let txt = wordRef.value.innerText
+            if (!wordRef.value) return
+            
+            const txt = wordRef.value.innerText
             wordRef.value.innerText = txt
                 .split('')
-                .map((letter, index) => {
+                .map((letter: string, index: number) => {
                     
                     // Slowly return letters back to their original letter
                     if (index < iteration) {
-                        return originalWord[index]
+                        return originalWord.value[index]
                     }
 
                     return letters[Math.floor(Math.random() * letters.length)]
                 })
                 .join('')
 
-            if(iteration >= originalWord.length) {
+            if(iteration >= originalWord.value.length) {
                 clearInterval(interval)
             }
 
