@@ -1,13 +1,19 @@
-<script setup>
-    defineProps({ blok: Object })
+<script setup lang="ts">
+    defineProps({
+        blok: {
+            type: Object,
+            default: () => ({})
+        },
+    })
+    
 </script>
 
 <template>
     <div v-editable="blok">
         <StoryblokComponent 
-            v-for="blok in blok.body"
-            :key="blok._uid" 
-            :blok="blok" 
+            v-for="innerBlok in blok.body"
+            :key="innerBlok._uid" 
+            :blok="innerBlok" 
         />
     </div>
 </template>

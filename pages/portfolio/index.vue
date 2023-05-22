@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
     import gsap from 'gsap'
     import { ScrollTrigger } from 'gsap/ScrollTrigger';
     gsap.registerPlugin(ScrollTrigger)
@@ -13,35 +13,9 @@
         ScrollTrigger.refresh()
     })
 
-    function updateFilter(payload) {
+    function updateFilter(payload: string) {
         filter.value = payload
     }
-
-    // onMounted(() => {
-    //     nextTick(() => {
-    //         const cards = gsap.utils.toArray('.m-project-card')
-    //         cards.forEach((card) => {
-    //             console.log(card);
-    //             gsap.set(card, {opacity: 0, y: '20%'})
-    //             gsap.fromTo(
-    //                 card,
-    //                 { opacity: 0, y: '20%'},
-    //                 {
-    //                     opacity: 1,
-    //                     y: 0,
-    //                     x: 0,
-    //                     duration: 1.2,
-    //                     scrollTrigger: {
-    //                         trigger: card,
-    //                         start: 'top 110%',
-    //                         end: 'bottom center',
-    //                         toggleActions: 'play none none reverse'
-    //                     }
-    //                 }
-    //             )
-    //         })
-    //     })
-    // })
 </script>
 
 <template>

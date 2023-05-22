@@ -57,10 +57,27 @@ export function useProjects(filter?: Ref<string>) {
         }
     }
 
+    async function fetchProjectBySlug(slug: string) {
+        try {
+            const { data } = await storyblokApi.get('cdn/stories', {
+                version: process.env.NODE_ENV === 'production' ? 'published' : 'draft',
+                starts_with: 'portfolio/',
+                by_slugs: '*/' + slug,
+                is_startpage: 0
+            })
+
+            const story = data.stories[0]
+
+            return story
+        } catch (error) {
+            console.log(error);
+        }
+    }
     return {
         ...toRefs(state),
         fetchProjects,
-        fetchProjectsByTag
+        fetchProjectsByTag,
+        fetchProjectBySlug
     }
 
 }

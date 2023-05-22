@@ -1,18 +1,19 @@
-<script setup>
+<script setup lang="ts">
     const props = defineProps({
-        blok: Object
+        blok: Object,
+        default: () => ({})
     })
 
     const resolvedRichText = computed(() =>
-        renderRichText(props.blok.content)
+        props.blok ? renderRichText(props.blok.content) : ''
     )
 </script>
 
 <template>
     <div v-editable="blok">
         <div>
-            <h1>{{ blok.title }}</h1>
-            <h2>{{ blok.desc }}</h2>
+            <h1>{{ blok?.title }}</h1>
+            <h2>{{ blok?.desc }}</h2>
         </div>
 
         <div v-html="resolvedRichText"></div>
